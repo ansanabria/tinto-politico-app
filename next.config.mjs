@@ -7,7 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'tinto-politico.vercel.app',
+        hostname: '**.public.blob.vercel-storage.com',
       },
     ],
   },
