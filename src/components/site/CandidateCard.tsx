@@ -26,7 +26,7 @@ export function CandidateCard({ href, imageUrl, name, party }: CandidateCardProp
         <div className="h-full w-full bg-secondary" aria-hidden />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 to-foreground/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 to-foreground/10 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100" />
 
       <div className="absolute inset-0 grid content-end p-5 opacity-0 translate-y-1.5 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0">
         <h3 className="m-0 font-sans text-lg font-bold text-white">{name}</h3>
