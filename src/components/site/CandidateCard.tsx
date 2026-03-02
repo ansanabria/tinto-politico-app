@@ -6,9 +6,11 @@ type CandidateCardProps = {
   imageUrl: string | null
   name: string
   party: string
+  /** Mark as LCP candidate — adds `priority` and `fetchPriority="high"` to the image. */
+  priority?: boolean
 }
 
-export function CandidateCard({ href, imageUrl, name, party }: CandidateCardProps) {
+export function CandidateCard({ href, imageUrl, name, party, priority }: CandidateCardProps) {
   return (
     <Link
       className="group relative block aspect-[3/4] min-h-[280px] overflow-hidden rounded-lg border border-border bg-secondary no-underline transition-shadow hover:shadow-md"
@@ -21,6 +23,7 @@ export function CandidateCard({ href, imageUrl, name, party }: CandidateCardProp
           fill
           sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
           className="object-cover"
+          priority={priority}
         />
       ) : (
         <div className="h-full w-full bg-secondary" aria-hidden />

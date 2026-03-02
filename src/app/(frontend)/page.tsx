@@ -17,7 +17,7 @@ export default async function HomePage() {
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         aria-label="Directorio de candidatos"
       >
-        {candidates.map((candidate) => {
+        {candidates.map((candidate, index) => {
           const slug = candidate.slug
           const name = candidate.name
           const party = candidate.party
@@ -30,6 +30,7 @@ export default async function HomePage() {
               imageUrl={imageUrl}
               name={name}
               party={party}
+              priority={index < 4}
             />
           )
         })}

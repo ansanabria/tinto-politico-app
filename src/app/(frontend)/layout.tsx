@@ -14,12 +14,13 @@ export const metadata = {
 }
 
 const dmSans = DM_Sans({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-dm-sans',
+  display: 'swap',
 })
 
 const ebGaramond = EB_Garamond({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-eb-garamond',
   weight: ['400', '500', '700'],
   style: ['normal', 'italic'],
@@ -32,6 +33,18 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${dmSans.variable} ${ebGaramond.variable}`}>
       <head>
+        {/* Preconnect to image CDN — saves ~100-200ms on LCP images */}
+        <link rel="dns-prefetch" href="https://public.blob.vercel-storage.com" />
+        <link
+          rel="preconnect"
+          href="https://public.blob.vercel-storage.com"
+          crossOrigin="anonymous"
+        />
+
+        {/* Preconnect to YouTube for embed pages */}
+        <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
+        <link rel="dns-prefetch" href="https://i.ytimg.com" />
+
         {process.env.NODE_ENV === 'development' && (
           <Script
             src="//unpkg.com/react-grab/dist/index.global.js"

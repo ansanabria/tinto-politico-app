@@ -9,6 +9,9 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
+/** Revalidate interview page every 5 minutes (ISR). */
+export const revalidate = 300
+
 export default async function EntrevistasPage({ params }: Props) {
   const { slug } = await params
   const candidate = await getCandidateBySlug(slug)

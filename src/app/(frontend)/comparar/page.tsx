@@ -10,6 +10,9 @@ import {
   getCandidatesForDirectory,
 } from '@/lib/candidates'
 
+/** Revalidate comparison page every 5 minutes (ISR). */
+export const revalidate = 300
+
 type ComparePageProps = {
   searchParams?: Promise<{
     a?: string
@@ -40,9 +43,13 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
   const selectedB = params.b
   const selectedC = params.c
 
-  const candidates = await getCandidatesForDirectory()
   const selectedSlugs = [selectedA, selectedB, selectedC].filter(Boolean) as string[]
-  const selectedCandidates = await getCandidatesBySlugs(selectedSlugs)
+
+  // Fetch directory and selected candidates in parallel (async-parallel rule)
+  const [candidates, selectedCandidates] = await Promise.all([
+    getCandidatesForDirectory(),
+    getCandidatesBySlugs(selectedSlugs),
+  ])
 
   const candidateA = selectedCandidates.find((c) => c.slug === selectedA)
   const candidateB = selectedCandidates.find((c) => c.slug === selectedB)

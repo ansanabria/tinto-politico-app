@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.public.blob.vercel-storage.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
     ],
     // Next.js 16 requires an explicit allowlist of permitted quality values.
     qualities: [75, 90],

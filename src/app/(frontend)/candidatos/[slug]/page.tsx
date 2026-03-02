@@ -19,6 +19,7 @@ import {
   getCandidateBySlug,
   getCandidateImageUrl,
   getCandidateSocialLinks,
+  getCandidatesForDirectory,
   getCorrectionsForCandidate,
   getMediaUrl,
   getSourcesForSection,
@@ -30,6 +31,15 @@ type CandidatePageProps = {
   params: Promise<{
     slug: string
   }>
+}
+
+/** Revalidate candidate profiles every 5 minutes (ISR). */
+export const revalidate = 300
+
+/** Pre-render all known candidate pages at build time for instant TTFB. */
+export async function generateStaticParams() {
+  const candidates = await getCandidatesForDirectory()
+  return candidates.map((c) => ({ slug: c.slug }))
 }
 
 export default async function CandidatePage({ params }: CandidatePageProps) {
@@ -64,7 +74,7 @@ export default async function CandidatePage({ params }: CandidatePageProps) {
               src={imageUrl}
               fill
               sizes="(max-width: 767px) 100vw, 30vw"
-              fetchPriority="high"
+              priority
               className="block object-cover"
             />
           ) : (
