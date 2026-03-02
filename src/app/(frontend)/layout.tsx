@@ -1,10 +1,11 @@
-import Script from 'next/script'
-import { DM_Sans, EB_Garamond } from 'next/font/google'
-import React from 'react'
-import './globals.css'
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { DM_Sans, EB_Garamond } from 'next/font/google'
+import Script from 'next/script'
+import React from 'react'
+import './globals.css'
 
 export const metadata = {
   description:
@@ -46,6 +47,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <SiteFooter />
         </main>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
