@@ -280,6 +280,53 @@ export const Candidates: CollectionConfig = {
       ],
     },
     {
+      name: 'additionalResources',
+      type: 'group',
+      label: 'Recursos adicionales',
+      admin: {
+        description:
+          'Recursos adicionales que se muestran en la barra lateral del perfil del candidato.',
+      },
+      fields: [
+        {
+          name: 'newsLink',
+          type: 'group',
+          label: 'Noticias (enlace a medio de comunicación)',
+          admin: {
+            description:
+              'Enlace opcional a la sección de noticias del candidato en un medio de comunicación.',
+          },
+          fields: [
+            {
+              name: 'enabled',
+              type: 'checkbox',
+              label: 'Mostrar este enlace',
+              defaultValue: false,
+            },
+            {
+              name: 'url',
+              type: 'text',
+              label: 'URL',
+              admin: {
+                condition: (data) => data?.additionalResources?.newsLink?.enabled,
+                description: 'Enlace directo a las noticias del candidato.',
+              },
+            },
+            {
+              name: 'outletLogo',
+              type: 'upload',
+              relationTo: 'media',
+              label: 'Logo del medio',
+              admin: {
+                condition: (data) => data?.additionalResources?.newsLink?.enabled,
+                description: 'Logo del medio de comunicación (opcional).',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'photo',
       type: 'upload',
       relationTo: 'media',

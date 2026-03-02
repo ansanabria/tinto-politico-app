@@ -187,6 +187,25 @@ export interface Candidate {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Recursos adicionales que se muestran en la barra lateral del perfil del candidato.
+   */
+  additionalResources?: {
+    /**
+     * Enlace opcional a la sección de noticias del candidato en un medio de comunicación.
+     */
+    newsLink?: {
+      enabled?: boolean | null;
+      /**
+       * Enlace directo a las noticias del candidato.
+       */
+      url?: string | null;
+      /**
+       * Logo del medio de comunicación (opcional).
+       */
+      outletLogo?: (number | null) | Media;
+    };
+  };
   photo: number | Media;
   lastUpdated: string;
   biography: {
@@ -542,6 +561,17 @@ export interface CandidatesSelect<T extends boolean = true> {
         platform?: T;
         url?: T;
         id?: T;
+      };
+  additionalResources?:
+    | T
+    | {
+        newsLink?:
+          | T
+          | {
+              enabled?: T;
+              url?: T;
+              outletLogo?: T;
+            };
       };
   photo?: T;
   lastUpdated?: T;

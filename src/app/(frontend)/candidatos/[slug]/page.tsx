@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { AdditionalResourcesPanel } from '@/components/site/AdditionalResourcesPanel'
 import { AlliancePartyCard } from '@/components/site/AlliancePartyCard'
 import { ControversyCard } from '@/components/site/ControversyCard'
 import { CorrectionHistory } from '@/components/site/CorrectionHistory'
@@ -19,6 +20,7 @@ import {
   getCandidateImageUrl,
   getCandidateSocialLinks,
   getCorrectionsForCandidate,
+  getMediaUrl,
   getSourcesForSection,
   lexicalToPlainText,
   SECTION_CONFIG,
@@ -41,6 +43,16 @@ export default async function CandidatePage({ params }: CandidatePageProps) {
   const corrections = await getCorrectionsForCandidate(candidate.id)
   const imageUrl = getCandidateImageUrl(candidate)
   const socialLinks = getCandidateSocialLinks(candidate)
+
+  const newsLinkData = candidate.additionalResources?.newsLink
+  const newsLink =
+    newsLinkData?.enabled && newsLinkData.url
+      ? {
+          url: newsLinkData.url,
+          candidateName: candidate.name,
+          outletLogoUrl: getMediaUrl(newsLinkData.outletLogo),
+        }
+      : null
 
   return (
     <section className="grid gap-8 md:grid-cols-[minmax(260px,30%)_1fr]">
@@ -88,6 +100,14 @@ export default async function CandidatePage({ params }: CandidatePageProps) {
               Redes sociales
             </p>
             <SocialLinksPanel links={socialLinks} />
+          </div>
+        )}
+        {newsLink && (
+          <div className="border-t border-border p-5">
+            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              Recursos adicionales
+            </p>
+            <AdditionalResourcesPanel newsLink={newsLink} />
           </div>
         )}
       </StickySidebar>
