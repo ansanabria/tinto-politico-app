@@ -28,10 +28,6 @@ export default async function EntrevistasPage({ params }: Props) {
       </div>
 
       <nav className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
-        <Link href="/candidatos" className="transition-colors hover:text-foreground">
-          Candidatos
-        </Link>
-        <span aria-hidden>/</span>
         <Link
           href={`/candidatos/${candidate.slug}`}
           className="transition-colors hover:text-foreground"

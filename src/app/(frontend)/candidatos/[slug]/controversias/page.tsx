@@ -40,10 +40,6 @@ export default async function AllControversiesPage({ params }: Props) {
       </div>
 
       <nav className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
-        <Link href="/candidatos" className="transition-colors hover:text-foreground">
-          Candidatos
-        </Link>
-        <span aria-hidden>/</span>
         <Link
           href={`/candidatos/${candidate.slug}`}
           className="transition-colors hover:text-foreground"
@@ -65,7 +61,11 @@ export default async function AllControversiesPage({ params }: Props) {
           <div className="mt-6 flex flex-wrap gap-3">
             <StatusPill label="Total" count={controversies.length} />
             {counts['under_investigation'] ? (
-              <StatusPill label="En investigación" count={counts['under_investigation']} variant="warning" />
+              <StatusPill
+                label="En investigación"
+                count={counts['under_investigation']}
+                variant="warning"
+              />
             ) : null}
             {counts['indicted'] ? (
               <StatusPill label="Imputado" count={counts['indicted']} variant="danger" />
@@ -73,9 +73,7 @@ export default async function AllControversiesPage({ params }: Props) {
             {counts['convicted'] ? (
               <StatusPill label="Condenado" count={counts['convicted']} variant="danger" />
             ) : null}
-            {counts['cleared'] ? (
-              <StatusPill label="Absuelto" count={counts['cleared']} />
-            ) : null}
+            {counts['cleared'] ? <StatusPill label="Absuelto" count={counts['cleared']} /> : null}
           </div>
         )}
       </header>
