@@ -9,6 +9,7 @@ type SectionNavProps = {
 export function SectionNav({ sections }: SectionNavProps) {
   return (
     <div className="sticky top-6 z-5 mb-5 rounded-lg border border-border bg-background p-1">
+      {/* Desktop — tabs */}
       <nav aria-label="Secciones del perfil" className="hidden w-full md:flex">
         {sections.map((section) => (
           <a
@@ -21,27 +22,21 @@ export function SectionNav({ sections }: SectionNavProps) {
         ))}
       </nav>
 
-      <label className="grid gap-1 md:hidden">
-        <span className="text-sm font-medium text-muted-foreground">Ir a sección</span>
-        <select
-          defaultValue=""
-          className="min-h-[2.4rem] rounded-lg border border-border bg-card px-3 text-sm text-foreground"
-          onChange={(event) => {
-            const targetId = event.target.value
-            if (!targetId) return
-            window.location.hash = targetId
-          }}
-        >
-          <option value="" disabled>
-            Seleccionar sección
-          </option>
-          {sections.map((section) => (
-            <option key={section.id} value={section.id}>
-              {section.heading}
-            </option>
-          ))}
-        </select>
-      </label>
+      {/* Mobile — horizontally scrollable pills */}
+      <nav
+        aria-label="Secciones del perfil"
+        className="flex gap-1.5 overflow-x-auto md:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {sections.map((section) => (
+          <a
+            key={section.id}
+            href={`#${section.id}`}
+            className="shrink-0 rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground no-underline transition-colors hover:bg-secondary hover:text-foreground"
+          >
+            {section.navLabel}
+          </a>
+        ))}
+      </nav>
     </div>
   )
 }

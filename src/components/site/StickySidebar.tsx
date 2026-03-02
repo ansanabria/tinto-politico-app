@@ -19,7 +19,13 @@ const BOTTOM_GAP = 24 // px from bottom of viewport when locked at bottom
  * naturally, and an inner sticky `<div>` (h-max) that only takes up as much
  * height as its content.
  */
-export function StickySidebar({ children }: { children: ReactNode }) {
+export function StickySidebar({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
   const innerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -62,7 +68,7 @@ export function StickySidebar({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <aside>
+    <aside className={className}>
       <div
         ref={innerRef}
         className="sticky h-max overflow-hidden rounded-lg border border-border bg-card"

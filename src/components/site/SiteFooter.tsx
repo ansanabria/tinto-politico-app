@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export function SiteFooter() {
   return (
-    <footer className="mt-12 border-t border-border pt-6 text-sm text-muted-foreground">
+    <footer className="mt-12 border-t border-border pt-6 pb-4 text-sm text-muted-foreground">
       <p className="mb-2 leading-relaxed">
         Este proyecto mantiene una línea editorial neutral y descriptiva. La información se publica
         con verificaciones y puede actualizarse cuando aparezcan nuevos datos confirmados.
@@ -19,7 +19,7 @@ export function SiteFooter() {
         </a>
         . Nos apoyamos de forma independiente en su trabajo periodístico como fuente de referencia.
       </p>
-      <nav aria-label="Enlaces secundarios" className="flex items-center gap-2">
+      <nav aria-label="Enlaces secundarios" className="flex flex-wrap items-center gap-x-2 gap-y-1">
         <Link
           href="/acerca"
           className="text-muted-foreground no-underline transition-colors hover:text-foreground"

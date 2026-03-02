@@ -99,7 +99,7 @@ export function CandidatePicker({
 
   return (
     <section className="mb-5">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
         <div className="flex-1">
           <CandidateSelect
             candidates={sortedCandidates.filter(

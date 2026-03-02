@@ -64,8 +64,8 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
 
   return (
     <section>
-      <h1 className="mb-1 text-3xl">Comparar candidatos</h1>
-      <p className="mb-6 text-muted-foreground">
+      <h1 className="mb-1 text-2xl sm:text-3xl">Comparar candidatos</h1>
+      <p className="mb-4 text-sm text-muted-foreground sm:mb-6 sm:text-base">
         Selecciona dos a tres perfiles para revisar su información en paralelo, con el mismo formato
         y sin puntuaciones.
       </p>

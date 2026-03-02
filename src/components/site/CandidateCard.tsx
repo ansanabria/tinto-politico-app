@@ -29,9 +29,11 @@ export function CandidateCard({ href, imageUrl, name, party, priority }: Candida
         <div className="h-full w-full bg-secondary" aria-hidden />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 to-foreground/10 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100" />
+      {/* Gradient overlay — always visible on mobile, hover-only on desktop */}
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/20 to-transparent opacity-100 transition-opacity duration-200 sm:from-foreground/75 sm:to-foreground/10 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100" />
 
-      <div className="absolute inset-0 grid content-end p-5 opacity-0 translate-y-1.5 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0">
+      {/* Name & party — always visible on mobile, slide-up on desktop */}
+      <div className="absolute inset-0 grid content-end p-5 opacity-100 translate-y-0 transition-all duration-200 sm:opacity-0 sm:translate-y-1.5 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 sm:group-focus-visible:opacity-100 sm:group-focus-visible:translate-y-0">
         <h3 className="m-0 font-sans text-lg font-bold text-white">{name}</h3>
         <p className="mt-1 text-sm text-white/70">{party}</p>
       </div>

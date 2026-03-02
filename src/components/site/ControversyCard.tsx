@@ -76,7 +76,7 @@ export function ControversyCard({ item }: ControversyCardProps) {
     <article
       className={`flex flex-col rounded-lg border border-border p-5 border-l-4 ${config.cardClass} ${config.leftBorderClass}`}
     >
-      <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+      <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
         <h3 className="text-base font-bold text-card-foreground leading-snug">{item.title}</h3>
         <div className="flex shrink-0 items-center gap-1.5">
           <span className={`inline-block h-2 w-2 rounded-full ${config.dotClass}`} aria-hidden />
